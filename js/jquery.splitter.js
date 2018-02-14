@@ -35,7 +35,10 @@
             onDragStart: $.noop,
             onDragEnd: $.noop,
             onDrag: $.noop,
-            percent: false
+            percent: false,
+            collapsible: false,
+            collapseTo: 'bottom',
+            onCollapse: $.noop
         }, options || {});
         this.settings = settings;
         var cls;
