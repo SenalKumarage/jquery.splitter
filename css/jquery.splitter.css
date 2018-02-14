@@ -66,3 +66,23 @@
   bottom: 0;
   z-index: 1000;
 }
+
+.splitter-handle {
+  position: absolute;
+  background-color: rgba(43, 43, 43, 0.66);
+  cursor: pointer;
+  z-index:1100;
+  border-radius: 2px;
+}
+
+.vsplitter + .splitter-handle {
+  top: calc(50% - 50px);
+  height: 100px;
+  width: 7px;
+}
+
+.hsplitter + .splitter-handle {
+  left: calc(50% - 50px);
+  height: 7px;
+  width: 100px;
+}

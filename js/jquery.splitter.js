@@ -59,6 +59,13 @@
         var height = this.height();
         var id = count++;
         this.addClass('splitter_panel');
+        var splitter_handle;
+        if (settings.collapsible) {
+            var handle_cls = 'splitter-handle';
+            splitter_handle = $('<div/>').addClass(handle_cls).bind('click', function () {
+                console.log('clicked handle');
+            }).insertAfter(panel_1);
+        }
         var splitter = $('<div/>').addClass(cls).bind('mouseenter touchstart', function() {
             splitter_id = id;
         }).bind('mouseleave touchend', function() {
@@ -123,16 +130,19 @@
                                 pw = panel_1.width(position).outerWidth();
                                 panel_2.width(width - pw);
                                 splitter.css('left', pw - sw2);
+                                if(settings.collapsible) splitter_handle.css('left', pw - sw2);
                             } else {
                                 if (settings.percent) {
                                     var w1 = (position - sw2) / width * 100;
                                     pw = panel_1.css('width', w1 + '%').outerWidth();
                                     panel_2.css('width', (width-pw-sw) / width * 100 + '%');
                                     splitter.css('left', (pw / width * 100) + '%');
+                                    if(settings.collapsible) splitter_handle.css('left', (pw / width * 100) + '%');
                                 } else {
                                     pw = panel_1.css('width', position - sw2).outerWidth();
                                     panel_2.width(width - pw - sw);
                                     splitter.css('left', pw);
+                                    if(settings.collapsible) splitter_handle.css('left', pw);
                                 }
                             }
                             panel_1.find('.splitter_panel').eq(0).height(self.height());
@@ -157,15 +167,18 @@
                                 pw = panel_1.height(position).outerHeight();
                                 panel_2.height(height - pw);
                                 splitter.css('top', pw - sw2);
+                                if(settings.collapsible) splitter_handle.css('top', pw - sw2);
                             } else if (settings.percent) {
                                 var h1 = (position - sw2) / height * 100;
                                 pw = panel_1.css('height', h1 + '%').outerHeight();
                                 panel_2.css('height', ((height - pw - sw) / height * 100) + '%');
                                 splitter.css('top', (pw / height * 100) + '%');
+                                if(settings.collapsible) splitter_handle.css('top', (pw / height * 100) + '%');
                             } else {
                                 pw = panel_1.height(position - sw2).outerHeight();
                                 panel_2.height(height - pw - sw);
                                 splitter.css('top', pw);
+                                if(settings.collapsible) splitter_handle.css('top', pw);
                             }
                         }
                         if (!silent) {
